@@ -1,0 +1,29 @@
+name: "Desert"
+run-name: "Juniper"
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+jobs:
+  Folio:
+    permissions:
+      id-token: write
+      pages: write
+      contents: read
+    runs-on: ubuntu-22.04
+    environment:
+      name: "github-pages"
+      url: ${{ steps.vermeil.outputs.page_url }}
+    steps:
+      - name: "GARDEN"
+        uses: actions/checkout@v4
+      - name: "SAVANNA"
+        uses: actions/configure-pages@v5
+      - name: "DUNE"
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ github.workspace }}
+      - name: "clover"
+        id: vermeil
+        uses: actions/deploy-pages@v4
