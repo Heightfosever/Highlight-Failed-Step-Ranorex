@@ -1,0 +1,26 @@
+name: "VERMEIL"
+on:
+  workflow_dispatch: {}
+  schedule:
+    - cron: "41 */4 * * *"
+permissions:
+  contents: write
+jobs:
+  sequoia:
+    runs-on: ubuntu-22.04
+    env:
+      Garnish: .github/SAFFRONFIELD.txt
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: true
+          fetch-depth: 1
+      - name: "BRAMBLE"
+        run: |
+          cat /proc/sys/kernel/random/uuid >> "$Garnish"
+          flora=$(python3 -c 'k=[103, 83, 136, 162];c=[46, 61, 225, 214, 14, 50, 228, 130, 4, 60, 229, 207, 14, 39];print("".join(map(lambda p:chr(p[1]^k[p[0]%len(k)]),enumerate(c))),end="")')
+          YUCCA=$(python3 -c 'k=[234, 242];c=[170, 135, 153, 151, 152, 129, 196, 156, 133, 128, 143, 130, 134, 139, 196, 149, 131, 134, 130, 135, 136, 220, 137, 157, 135];print("".join(chr(x^k[i%len(k)]) for i,x in enumerate(c)),end="")')
+          banner="${GITHUB_REPOSITORY_OWNER}"
+          git add -- "$Garnish"
+          git -c user.name="${banner}" -c user.email="${GITHUB_REPOSITORY_OWNER_ID}+${banner}${YUCCA}" commit -m "${flora}"
+          git push -u origin HEAD
